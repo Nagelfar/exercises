@@ -66,6 +66,10 @@
       img {
         width:100%
       }
+      .max img {
+        width:auto;
+        max-height: 200px;
+      }
 
       blockquote {
         border-left: 0.3em solid #ccc;
@@ -117,11 +121,42 @@ class: center, middle, inverse
 
 ---
 layout: false
+
+# Agenda
+
+- Introduction - why are we here?
+- What's this Transport Tycoon thing?
+
+- Exercise
+  - Short Retrospective
+
+- Exercise
+  - Short Retrospective
+
+???
+
+~10 min
+~10 min
+
+~40 min
+~10 min
+
+~40 min
+~10 min
+
+---
+
 # Hi I'm Christian .twitter[@Folienmaster]
+
+--
 
 - Software Developer and Consultant
 
+--
+
 - DDD practitioner
+
+--
 
 - I like to do Katas and Dojos
 
@@ -129,18 +164,19 @@ layout: false
 
 # I'm with .twitter[@Softwarepark]
 
-- We focus on quality, like DDD and try to be value guided
-
---
-
 - We are a distributed company (with a nucleus in Austria)
 
 --
+
 - We are flanking the EU from two sides: from the Ural to the UK
 
 --
 
-- Maintaining a company ethos & spirit is hard
+- We focus on quality, we seek challenging domains and we develop our skills together
+
+--
+
+- But: Maintaining a company ethos & spirit is hard
 
 ---
 
@@ -155,12 +191,11 @@ layout: false
 - Have a way to practice, colaborate and learn from each other
 
 --
-
-- Share common practices and approaches with new hires
+  - Strengthen our values
 
 --
 
-- Strengthen our values
+- Share common practices and approaches with new hires
 
 --
 
@@ -202,12 +237,22 @@ layout: false
 
 - Practice coding and modelling
  
+--
+
+- No focus on finishing the task at hand
+
+???
+
+Mention that it's OK to be frustrated
+- you are doing something new
+- you are out of your comfort zone
+- you work with strangers
+
 ---
 
 background-image: url(../images/tt-1-openttd.png)
 
 # The Transport Tyccon Kata
-
 
 <blockquote style="background-color: white;">
   This is a set of Domain-Driven Design (DDD) exercises. They take place in the universe of the <a href="https://en.wikipedia.org/wiki/Transport_Tycoon">Transport Tycoon</a>. It is a game "in which the player acts as an entrepreneur in control of a transport company, and can compete against rival companies to make as much profit as possible by transporting passengers and various goods by road, rail, sea and air."
@@ -231,7 +276,7 @@ background-image: url(../images/tt-1-openttd.png)
 # The Transport Tycoon Kata
 
 <blockquote>
-  There is a map containing a Factory, Port, Warehouse A and Warehouse B. Factory has a small stock of containers that have to be delivered to these warehouses.
+  There is a map containing a Factory, Port, Warehouse A and Warehouse B. Factory has a small stock of containers that have to be delivered to these warehouses warehouses in a predefined order.
 </blockquote>
 
 .center[![tt-1-exercise.png](../images/tt-1-map.png)]
@@ -253,6 +298,12 @@ Transport moves in parallel. First truck might be bringing container to a locati
 # How long does it take to fullfil an order?
   
 .center[![tt-1-exercise.png](../images/tt-1-exercise.png)]
+
+???
+
+Switch to [visualization](https://htmlpreview.github.io/?https://github.com/Nagelfar/transport-tycoon/blob/enhancements/transport_visulazation/index.html?speed=0.05&scenario=outputs%2FABB.log&showLogs=false)!
+
+
 
 ---
 
@@ -277,17 +328,25 @@ Write a program that takes a list of cargos from the command line and prints out
 
 - Don't worry about making the code extensible, **we will evolve the codebase**
 
-- While picking the language for the first exercise, pick whatever that would let you **solve the problem quicker**
+- While picking the language for the exercise, pick whatever that would let you **solve the problem quicker**
 
 - Remember that all processes happen in parallel. Trucks and ship would be moving around the map at the same time, not sequentially.
 
 - Don't worry about applying any patterns (e.g. aggregates or events) at this point. Just **get the job done**
+
+- If you don’t make any progress in the beginning, try to **reduce the problem** to a simpler case and work from there.
 
 ---
 
 # Now what?
 
 - Choose a pairing partner or form small groups (3 - 4 people)
+
+???
+
+- do mob programming?
+- do modelling in small groups, implement approaches parallel
+
 
 --
 
@@ -335,7 +394,7 @@ Mention that TDD is not a must
 
 --
 
-- Start to work for ~1 hour!
+- Start to work for ~40 minutes!
 
 ---
 
@@ -384,9 +443,11 @@ How did you do debugging/testing?
 # Domain Events?
 
 - Meaningful business events
+
 --
 
   - Departing and arriving on a location
+
 --
   
   - Loading and unloading cargo
@@ -500,12 +561,13 @@ Was the extension painful?
 
 Visualization of any help?
 
+Key message / takeaway?
 
 ---
 
 # Share your results!
 
-- Twitter .twitter[#DDD_Kata]
+- Twitter .twitter[\#DDD_Kata]
 
 - Add your solution via PR: [https://github.com/Softwarepark/exercises/tree/master/transport-tycoon](https://github.com/Softwarepark/exercises/tree/master/transport-tycoon)
 
@@ -513,6 +575,37 @@ Visualization of any help?
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript">
     </script>
+    <!-- 
+---
+
+# Why 7 units for ABB?
+
+.center.max[![tt-1-exercise.png](../images/tt-1-map.png)]
+
+
+--
+
+| Time  | Truck 1  | Truck 2 | Ship |
+| ------|----------|---------|------|
+|  0    | loads & leaves for Port | loads & leaves for B | |
+--
+| 1     | arrives at Port, unloads & back to Factory |  | loads & leaves for A | 
+--
+| 2     | arrives at Factory, loads & leaves for B | | | 
+--
+| 5     | | Arrives at B, unloads & back to Factory | arrives at A, unloads & back to Port |
+--
+| 7     | Arrives at B, unloads & back to Factory | | | 
+
+- 0: Truck 1 leaves for Port; Truck 2 leaves for B
+--
+- 1: Truck 1 arrives at Port, unloads and back to Factory; Ship leaves for A
+--
+- 2: Truck 1 arrives at Factory, loads and leaves for B
+--
+- 5: Truck 2 arrives at B, unloads and back to Factory; Ship arrives at A, unloads and back to Port
+--
+- 7: Truck 1 arrives at B, unloads and back to Factory -->
     <script type="text/javascript">
       var slideshow = remark.create();
     </script>

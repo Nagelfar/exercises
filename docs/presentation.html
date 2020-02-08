@@ -172,7 +172,7 @@ layout: false
 
 --
 
-- We focus on quality, we seek challenging domains and we develop our skills together
+- We focus on quality, domain modelling and improve our skills together
 
 --
 
@@ -204,6 +204,10 @@ layout: false
 ---
    
 # Why Katas?
+
+???
+
+Ask who has experiences with katas or dojos?
 
 --
 
@@ -301,7 +305,7 @@ Transport moves in parallel. First truck might be bringing container to a locati
 
 ???
 
-Switch to [visualization](https://htmlpreview.github.io/?https://github.com/Nagelfar/transport-tycoon/blob/enhancements/transport_visulazation/index.html?speed=0.05&scenario=outputs%2FABB.log&showLogs=false)!
+Switch to [visualization](https://htmlpreview.github.io/?https://github.com/Nagelfar/transport-tycoon/blob/enhancements/transport_visulazation/index.html?speed=0.02&scenario=outputs%2FABB.log&showLogs=false)!
 
 
 
@@ -340,14 +344,6 @@ Write a program that takes a list of cargos from the command line and prints out
 
 # Now what?
 
-- Choose a pairing partner or form small groups (3 - 4 people)
-
-???
-
-- do mob programming?
-- do modelling in small groups, implement approaches parallel
-
-
 --
 
 - Decide on approach and language
@@ -374,6 +370,11 @@ You don't have to code right away!
 
 - do ...?
 
+???
+
+- do exploratory modelling & coding - Code probe
+- do modelling in small groups, implement approaches parallel
+
 --
 
 .center[But remember: the domain expert is a scarce resource!]
@@ -394,7 +395,7 @@ Mention that TDD is not a must
 
 --
 
-- Start to work for ~40 minutes!
+- Start to work until Retrospective!
 
 ---
 
@@ -541,6 +542,7 @@ class: center, middle
   - Ship takes **6 hours to travel** in each direction    
 
 --
+
   - Note, that ship doesn't wait to be full in order to DEPART. It just LOADs the available cargo and leaves.
 
 ---
@@ -571,41 +573,14 @@ Key message / takeaway?
 
 - Add your solution via PR: [https://github.com/Softwarepark/exercises/tree/master/transport-tycoon](https://github.com/Softwarepark/exercises/tree/master/transport-tycoon)
 
+- View your solution as visualization [https://github.com/Nagelfar/transport-tycoon/tree/enhancements/transport_visulazation](https://github.com/Nagelfar/transport-tycoon/tree/enhancements/transport_visulazation) 
+  (created by Aigiz Kunafin)
+
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript">
     </script>
-    <!-- 
----
 
-# Why 7 units for ABB?
-
-.center.max[![tt-1-exercise.png](images/tt-1-map.png)]
-
-
---
-
-| Time  | Truck 1  | Truck 2 | Ship |
-| ------|----------|---------|------|
-|  0    | loads & leaves for Port | loads & leaves for B | |
---
-| 1     | arrives at Port, unloads & back to Factory |  | loads & leaves for A | 
---
-| 2     | arrives at Factory, loads & leaves for B | | | 
---
-| 5     | | Arrives at B, unloads & back to Factory | arrives at A, unloads & back to Port |
---
-| 7     | Arrives at B, unloads & back to Factory | | | 
-
-- 0: Truck 1 leaves for Port; Truck 2 leaves for B
---
-- 1: Truck 1 arrives at Port, unloads and back to Factory; Ship leaves for A
---
-- 2: Truck 1 arrives at Factory, loads and leaves for B
---
-- 5: Truck 2 arrives at B, unloads and back to Factory; Ship arrives at A, unloads and back to Port
---
-- 7: Truck 1 arrives at B, unloads and back to Factory -->
     <script type="text/javascript">
       var slideshow = remark.create();
     </script>
